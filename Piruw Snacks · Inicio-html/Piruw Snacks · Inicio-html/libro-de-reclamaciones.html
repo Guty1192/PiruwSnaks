@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Libro de Reclamaciones Virtual · Piruw Snacks E.I.R.L.</title>
+  <meta name="description" content="Libro de Reclamaciones Virtual de Piruw Snacks E.I.R.L. Conforme a lo establecido en el Código de Protección y Defensa del Consumidor del Perú.">
+  <link rel="icon" type="image/png" href="./assets/c298bebafae3fb16918f6a4dec23c7f5.png">
+  
+  <!-- Tipografía Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #D5202B;
+      --primary-dark: #A5121B;
+      --yellow: #FFE81A;
+      --yellow-gold: #F4B80F;
+      --ink: #1A120C;
+      --cream: #FFF6E0;
+      --teal: #0F7F90;
+      --gray-bg: #F8F9FA;
+      --gray-border: #E2E8F0;
+      --gray-text: #64748B;
+      --success: #2ED573;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background: #FDFBF7;
+      color: var(--ink);
+      line-height: 1.55;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Bar / Header */
+    .top-header {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 18px 24px;
+      border-bottom: 4px solid var(--primary);
+    }
+    .top-header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-logo {
+      height: 52px;
+      width: auto;
+      display: block;
+    }
+    .brand-title {
+      font-family: 'Luckiest Guy', cursive, sans-serif;
+      font-size: 22px;
+      letter-spacing: .02em;
+      color: var(--yellow);
+    }
+    .return-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.1);
+      border: 1.5px solid rgba(255,255,255,.25);
+      color: var(--cream);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .return-link:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #FFFFFF;
+    }
+
+    /* Main Container */
+    .main-wrap {
+      max-width: 1000px;
+      width: 100%;
+      margin: 32px auto 60px;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    /* Header Card */
+    .hero-card {
+      background: #FFFFFF;
+      border: 2px solid var(--gray-border);
+      border-radius: 20px;
+      padding: 32px 36px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.04);
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), var(--yellow-gold), var(--teal));
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FEECEE;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 800;
+      padding: 5px 14px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-family: 'Luckiest Guy', cursive, sans-serif;
+      font-size: clamp(26px, 4vw, 36px);
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 10px;
+      letter-spacing: .01em;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--gray-text);
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
+    /* Legal Data Box */
+    .legal-meta-box {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1.5px dashed var(--gray-border);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px 24px;
+      font-size: 13.5px;
+    }
+    .legal-meta-item strong {
+      color: var(--ink);
+    }
+    .hoja-nro-tag {
+      background: var(--yellow);
+      color: var(--ink);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 14px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    /* Form Styles */
+    .form-card {
+      background: #FFFFFF;
+      border: 2px solid var(--gray-border);
+      border-radius: 20px;
+      padding: 32px 36px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.04);
+      margin-bottom: 24px;
+    }
+    .section-title-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--gray-border);
+      padding-bottom: 14px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-number {
+      background: var(--primary);
+      color: #FFFFFF;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .req-indicator {
+      font-size: 13px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+    .col-12 { grid-column: span 12; }
+    .col-8  { grid-column: span 8; }
+    .col-6  { grid-column: span 6; }
+    .col-4  { grid-column: span 4; }
+    .col-3  { grid-column: span 3; }
+
+    @media (max-width: 768px) {
+      .col-8, .col-6, .col-4, .col-3 {
+        grid-column: span 12;
+      }
+      .hero-card, .form-card {
+        padding: 22px 18px;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-label {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .form-label .req {
+      color: var(--primary);
+    }
+    .form-control {
+      width: 100%;
+      height: 46px;
+      padding: 0 14px;
+      border: 1.5px solid var(--gray-border);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14.5px;
+      color: var(--ink);
+      background: #FFFFFF;
+      transition: all .2s;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(15,127,144,.15);
+    }
+    textarea.form-control {
+      height: auto;
+      padding: 12px 14px;
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    /* Radio / Type Selector */
+    .type-selector-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 600px) {
+      .type-selector-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .type-option-card {
+      border: 2px solid var(--gray-border);
+      border-radius: 14px;
+      padding: 18px;
+      cursor: pointer;
+      transition: all .2s;
+      background: #FFFFFF;
+      position: relative;
+    }
+    .type-option-card:hover {
+      border-color: var(--yellow-gold);
+    }
+    .type-option-card.selected {
+      border-color: var(--primary);
+      background: #FFF8F8;
+      box-shadow: 0 4px 14px rgba(213,32,43,.1);
+    }
+    .type-option-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .type-radio-custom {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--gray-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+      flex-shrink: 0;
+    }
+    .type-option-card.selected .type-radio-custom {
+      border-color: var(--primary);
+    }
+    .type-option-card.selected .type-radio-custom::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+    .type-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .type-desc {
+      font-size: 13px;
+      color: var(--gray-text);
+      line-height: 1.5;
+    }
+
+    /* Notice callout */
+    .legal-notice {
+      background: #F4F8FA;
+      border-left: 4px solid var(--teal);
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      font-size: 13.5px;
+      color: #334155;
+      line-height: 1.6;
+      margin: 16px 0;
+    }
+
+    /* Checkbox */
+    .checkbox-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 16px 0;
+      cursor: pointer;
+      font-size: 13.5px;
+      color: var(--ink);
+    }
+    .checkbox-wrap input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* Buttons */
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 14px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .btn-submit {
+      background: var(--primary);
+      color: #FFFFFF;
+      border: none;
+      padding: 14px 34px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(213,32,43,.35);
+      transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-submit:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(213,32,43,.45);
+    }
+    .btn-clear {
+      background: transparent;
+      border: 2px solid var(--gray-border);
+      color: var(--ink);
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-clear:hover {
+      background: #F1F5F9;
+    }
+
+    /* Success Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,8,7,.85);
+      backdrop-filter: blur(8px);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-backdrop.active {
+      display: flex;
+    }
+    .modal-receipt-card {
+      background: #FFFFFF;
+      border-radius: 24px;
+      max-width: 650px;
+      width: 100%;
+      padding: 36px 32px;
+      position: relative;
+      box-shadow: 0 24px 60px rgba(0,0,0,.35);
+      max-height: 90vh;
+      overflow-y: auto;
+      text-align: left;
+    }
+    .receipt-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #E8F9EE;
+      color: #1B7F37;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .receipt-title {
+      font-family: 'Luckiest Guy', cursive, sans-serif;
+      font-size: 28px;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .receipt-details {
+      background: #F8FAFC;
+      border: 1.5px solid var(--gray-border);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 20px 0;
+      font-size: 13.5px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed var(--gray-border);
+      padding-bottom: 6px;
+    }
+    .receipt-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .receipt-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 24px 20px;
+      font-size: 13.5px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="top-header">
+    <div class="top-header-inner">
+      <a href="./Main.dc.html" class="brand-link" title="Volver al inicio de Piruw Snacks">
+        <img class="brand-logo" src="./assets/c298bebafae3fb16918f6a4dec23c7f5.png" alt="Piruw Snacks Logo" style="height: 58px; width: auto; display: block">
+      </a>
+      <a href="./Main.dc.html" class="return-link">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Volver a la tienda
+      </a>
+    </div>
+  </header>
+
+  <main class="main-wrap">
+
+    <!-- Header Informative Card -->
+    <section class="hero-card">
+      <span class="hero-badge">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        Libro de Reclamaciones Virtual
+      </span>
+      <h1 class="hero-title">Libro de Reclamaciones</h1>
+      <p class="hero-desc">
+        Conforme a lo establecido en el <strong>Código de Protección y Defensa del Consumidor (Ley N° 29571)</strong> y el <strong>Decreto Supremo N° 011-2011-PCM</strong>, este proveedor cuenta con un Libro de Reclamaciones Virtual a tu entera disposición. Registra tu queja o reclamo a continuación.
+      </p>
+
+      <div class="legal-meta-box">
+        <div class="legal-meta-item">
+          <strong>Razón Social:</strong><br>
+          Piruw Snacks E.I.R.L.
+        </div>
+        <div class="legal-meta-item">
+          <strong>RUC:</strong><br>
+          20608974512
+        </div>
+        <div class="legal-meta-item">
+          <strong>Dirección Comercial:</strong><br>
+          Abancay Mza. Z-2 Lote. 10 Urb. Santa Cruz - Callao
+        </div>
+        <div class="legal-meta-item">
+          <strong>Hoja de Reclamación:</strong><br>
+          <span class="hoja-nro-tag" id="display-hoja-nro">N° 00000184-2026</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Complaint Registration Form -->
+    <form id="reclamacionesForm" onsubmit="handleFormSubmit(event)" novalidate>
+
+      <!-- SECCIÓN 1: Identificación del Consumidor Reclamante -->
+      <section class="form-card">
+        <div class="section-title-wrap">
+          <h2 class="section-title">
+            <span class="section-number">1</span>
+            Identificación del Consumidor Reclamante
+          </h2>
+          <span class="req-indicator">(*) Datos obligatorios</span>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group col-6">
+            <label class="form-label" for="nombres">Nombres <span class="req">*</span></label>
+            <input type="text" id="nombres" name="nombres" class="form-control" placeholder="Ej. Juan Carlos" required>
+          </div>
+
+          <div class="form-group col-3">
+            <label class="form-label" for="apPaterno">Apellido Paterno <span class="req">*</span></label>
+            <input type="text" id="apPaterno" name="apPaterno" class="form-control" placeholder="Ej. Pérez" required>
+          </div>
+
+          <div class="form-group col-3">
+            <label class="form-label" for="apMaterno">Apellido Materno <span class="req">*</span></label>
+            <input type="text" id="apMaterno" name="apMaterno" class="form-control" placeholder="Ej. Quispe" required>
+          </div>
+
+          <div class="form-group col-4">
+            <label class="form-label" for="tipoDoc">Tipo de Documento <span class="req">*</span></label>
+            <select id="tipoDoc" name="tipoDoc" class="form-control" required>
+              <option value="DNI">DNI (Documento Nacional de Identidad)</option>
+              <option value="CE">Carnet de Extranjería</option>
+              <option value="PASAPORTE">Pasaporte</option>
+              <option value="RUC">RUC</option>
+            </select>
+          </div>
+
+          <div class="form-group col-4">
+            <label class="form-label" for="nroDoc">Número de Documento <span class="req">*</span></label>
+            <input type="text" id="nroDoc" name="nroDoc" class="form-control" placeholder="Ej. 72489150" maxlength="12" required>
+          </div>
+
+          <div class="form-group col-4">
+            <label class="form-label" for="telefono">Teléfono / WhatsApp <span class="req">*</span></label>
+            <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="Ej. 922111326" required>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label" for="email">Correo Electrónico <span class="req">*</span></label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="tunombre@ejemplo.com" required>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label" for="direccion">Domicilio / Dirección Completa <span class="req">*</span></label>
+            <input type="text" id="direccion" name="direccion" class="form-control" placeholder="Av. / Jr. / Calle, Número, Dpto / Urb." required>
+          </div>
+
+          <div class="form-group col-4">
+            <label class="form-label" for="departamento">Departamento <span class="req">*</span></label>
+            <input type="text" id="departamento" name="departamento" class="form-control" value="Lima / Callao" required>
+          </div>
+
+          <div class="form-group col-4">
+            <label class="form-label" for="provincia">Provincia <span class="req">*</span></label>
+            <input type="text" id="provincia" name="provincia" class="form-control" value="Callao" required>
+          </div>
+
+          <div class="form-group col-4">
+            <label class="form-label" for="distrito">Distrito <span class="req">*</span></label>
+            <input type="text" id="distrito" name="distrito" class="form-control" placeholder="Ej. Callao / Bellavista" required>
+          </div>
+
+          <!-- Menor de edad toggle -->
+          <div class="col-12" style="margin-top: 6px">
+            <label class="checkbox-wrap">
+              <input type="checkbox" id="esMenorEdad" onchange="toggleTutor(this.checked)">
+              <span>El consumidor reclamante es menor de edad (se requerirá identificar al padre, madre o tutor)</span>
+            </label>
+          </div>
+
+          <div id="tutorFields" class="col-12 form-grid" style="display: none; background: #F8FAFC; padding: 14px; border-radius: 12px; border: 1px dashed var(--gray-border)">
+            <div class="form-group col-6">
+              <label class="form-label" for="tutorNombre">Nombre del Padre, Madre o Tutor <span class="req">*</span></label>
+              <input type="text" id="tutorNombre" class="form-control" placeholder="Nombres y apellidos completos">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label" for="tutorDocTipo">Tipo Doc. Tutor</label>
+              <select id="tutorDocTipo" class="form-control">
+                <option value="DNI">DNI</option>
+                <option value="CE">Carnet Extranjería</option>
+              </select>
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label" for="tutorDocNro">N° Doc. Tutor</label>
+              <input type="text" id="tutorDocNro" class="form-control" placeholder="Número de documento">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 2: Identificación del Bien Contratado -->
+      <section class="form-card">
+        <div class="section-title-wrap">
+          <h2 class="section-title">
+            <span class="section-number">2</span>
+            Identificación del Bien Contratado
+          </h2>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group col-4">
+            <label class="form-label">Tipo de Bien <span class="req">*</span></label>
+            <select id="tipoBien" name="tipoBien" class="form-control" required>
+              <option value="PRODUCTO">Producto (Snack)</option>
+              <option value="SERVICIO">Servicio (Atención / Despacho comercial)</option>
+            </select>
+          </div>
+
+          <div class="form-group col-5">
+            <label class="form-label" for="productoSelect">Producto o Snack Relacionado</label>
+            <select id="productoSelect" name="productoSelect" class="form-control">
+              <option value="Peruanitas papas al hilo">Peruanitas papas al hilo (32 g)</option>
+              <option value="Chifles sabor ceviche">Chifles sabor a ceviche (32 g)</option>
+              <option value="Tiki Chifles salado clásico">Tiki Chifles salado clásico (32 g)</option>
+              <option value="Peruanitas papas hojuelas tocino">Peruanitas papas hojuelas sabor tocino (32 g)</option>
+              <option value="Peruanitas pollo a la brasa">Peruanitas sabor pollo a la brasa (32 g)</option>
+              <option value="Trigo Sumaq inflado">Trigo Sumaq cereal inflado (32 g)</option>
+              <option value="Caja / Pack por mayor">Pedido mayorista / Por caja</option>
+              <option value="Otro">Otro producto / general</option>
+            </select>
+          </div>
+
+          <div class="form-group col-3">
+            <label class="form-label" for="montoReclamado">Monto Reclamado (S/.)</label>
+            <input type="number" id="montoReclamado" name="montoReclamado" step="0.10" class="form-control" placeholder="0.00">
+          </div>
+
+          <div class="form-group col-12">
+            <label class="form-label" for="descBien">Descripción del Bien o Servicio Contratado <span class="req">*</span></label>
+            <input type="text" id="descBien" name="descBien" class="form-control" placeholder="Ej. Bolsa de Peruanitas al hilo 32g comprada en minimarket / Pedido por mayor" required>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 3: Detalle de la Reclamación -->
+      <section class="form-card">
+        <div class="section-title-wrap">
+          <h2 class="section-title">
+            <span class="section-number">3</span>
+            Detalle de la Reclamación y Pedido del Consumidor
+          </h2>
+        </div>
+
+        <div class="form-group col-12" style="margin-bottom: 20px">
+          <label class="form-label">Tipo de Registro <span class="req">*</span></label>
+          <div class="type-selector-grid">
+            <div class="type-option-card selected" id="cardReclamo" onclick="selectTipo('RECLAMO')">
+              <div class="type-option-header">
+                <span class="type-radio-custom"></span>
+                <span class="type-title">RECLAMO</span>
+              </div>
+              <p class="type-desc">Disconformidad relacionada a los productos o servicios adquiridos (calidad, características, empaque, peso o entrega).</p>
+            </div>
+
+            <div class="type-option-card" id="cardQueja" onclick="selectTipo('QUEJA')">
+              <div class="type-option-header">
+                <span class="type-radio-custom"></span>
+                <span class="type-title">QUEJA</span>
+              </div>
+              <p class="type-desc">Malestar o descontento respecto a la atención al público o proceso de comunicación, no vinculada directamente al producto.</p>
+            </div>
+          </div>
+          <input type="hidden" id="tipoRegistro" name="tipoRegistro" value="RECLAMO">
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group col-12">
+            <label class="form-label" for="detalle">Detalle del Reclamo o Queja <span class="req">*</span></label>
+            <textarea id="detalle" name="detalle" class="form-control" rows="4" placeholder="Describe de forma clara y detallada los hechos ocurridos, fechas, número de lote o información relevante..." required></textarea>
+          </div>
+
+          <div class="form-group col-12">
+            <label class="form-label" for="pedido">Pedido o Solicitud Concreta del Consumidor <span class="req">*</span></label>
+            <textarea id="pedido" name="pedido" class="form-control" rows="3" placeholder="Indica qué solución o acción solicitas por parte de Piruw Snacks E.I.R.L. (cambio de producto, devolución, aclaración, etc.)..." required></textarea>
+          </div>
+        </div>
+
+        <div class="legal-notice">
+          <strong>Plazo legal de respuesta:</strong> Conforme al Código de Protección y Defensa del Consumidor (Ley N° 29571 modificada por Ley N° 31435), la respuesta a este reclamo o queja será remitida a su correo electrónico en un plazo no mayor a <strong>quince (15) días hábiles</strong> improrrogables.
+        </div>
+
+        <!-- Declaraciones legales -->
+        <label class="checkbox-wrap">
+          <input type="checkbox" id="aceptoTerminos" required>
+          <span>Declaro ser el titular del reclamo y que la información proporcionada es verídica y exacta.</span>
+        </label>
+
+        <label class="checkbox-wrap">
+          <input type="checkbox" id="aceptoPrivacidad" required>
+          <span>Autorizo el tratamiento de mis datos personales únicamente para la atención y seguimiento de esta reclamación, conforme a la <a href="./politica-de-privacidad.pdf" target="_blank" style="color: var(--teal); font-weight: 700">Política de Privacidad</a> de Piruw Snacks E.I.R.L.</span>
+        </label>
+
+        <div class="form-actions">
+          <button type="button" class="btn-clear" onclick="limpiarFormulario()">Limpiar formulario</button>
+          <button type="submit" class="btn-submit">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            Registrar Hoja de Reclamación
+          </button>
+        </div>
+      </section>
+
+    </form>
+
+  </main>
+
+  <!-- Modal de Constancia de Registro -->
+  <div class="modal-backdrop" id="modalConfirmacion" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+    <div class="modal-receipt-card">
+      <span class="receipt-badge">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        Reclamación Registrada con Éxito
+      </span>
+
+      <h3 id="modalTitulo" class="receipt-title">Constancia de Reclamación</h3>
+      <p style="font-size: 14.5px; color: var(--gray-text)">
+        Tu reclamo ha sido recibido satisfactoriamente por el área de atención al cliente de <strong>Piruw Snacks E.I.R.L.</strong> Te hemos enviado una copia de respaldo a tu correo electrónico.
+      </p>
+
+      <div class="receipt-details" id="receiptDataBox">
+        <div class="receipt-row">
+          <span><strong>Número de Hoja:</strong></span>
+          <span style="font-weight: 800; color: var(--primary)" id="recNro">N° 00000184-2026</span>
+        </div>
+        <div class="receipt-row">
+          <span><strong>Fecha y Hora:</strong></span>
+          <span id="recFecha">15/10/2026</span>
+        </div>
+        <div class="receipt-row">
+          <span><strong>Consumidor:</strong></span>
+          <span id="recNombre">Juan Pérez</span>
+        </div>
+        <div class="receipt-row">
+          <span><strong>Documento:</strong></span>
+          <span id="recDoc">DNI 72489150</span>
+        </div>
+        <div class="receipt-row">
+          <span><strong>Tipo de Registro:</strong></span>
+          <span id="recTipo" style="font-weight: 800; color: var(--primary)">RECLAMO</span>
+        </div>
+        <div class="receipt-row">
+          <span><strong>Producto / Bien:</strong></span>
+          <span id="recProducto">Peruanitas papas al hilo</span>
+        </div>
+        <div class="receipt-row">
+          <span><strong>Plazo máximo de respuesta:</strong></span>
+          <span style="font-weight: 700; color: var(--teal)">15 días hábiles</span>
+        </div>
+      </div>
+
+      <div style="background: #FFF9EC; border: 1.5px solid var(--yellow-gold); border-radius: 12px; padding: 12px 16px; font-size: 13px; color: var(--ink)">
+        <strong>Importante:</strong> Guarda este número de hoja para cualquier seguimiento. Si tienes dudas adicionales, puedes contactar a nuestro WhatsApp comercial oficial al <strong>+51 922 111 326</strong> o a <strong>ventas@piruwsnacks.pe</strong>.
+      </div>
+
+      <div class="receipt-actions">
+        <button class="btn-clear" onclick="window.print()">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          Imprimir Constancia
+        </button>
+        <button class="btn-submit" onclick="cerrarModalYVolver()">
+          Finalizar y Volver a Inicio
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2026 Piruw Snacks E.I.R.L. · RUC 20608974512 · Abancay Mza. Z-2 Lote. 10 Urb. Santa Cruz - Callao, Perú.</p>
+    <p style="opacity: .8; font-size: 12.5px; margin-top: 4px">Libro de Reclamaciones conforme al Código de Protección y Defensa del Consumidor (Ley N° 29571).</p>
+  </footer>
+
+  <script>
+    // Generar correlativo aleatorio realista
+    const year = new Date().getFullYear();
+    const randomNro = String(Math.floor(Math.random() * 900) + 100).padStart(8, '0');
+    const hojaCodigo = 'N° ' + randomNro + '-' + year;
+    document.getElementById('display-hoja-nro').innerText = hojaCodigo;
+
+    // Toggle tipo de registro (Reclamo vs Queja)
+    function selectTipo(tipo) {
+      document.getElementById('tipoRegistro').value = tipo;
+      const cReclamo = document.getElementById('cardReclamo');
+      const cQueja = document.getElementById('cardQueja');
+
+      if (tipo === 'RECLAMO') {
+        cReclamo.classList.add('selected');
+        cQueja.classList.remove('selected');
+      } else {
+        cQueja.classList.add('selected');
+        cReclamo.classList.remove('selected');
+      }
+    }
+
+    // Toggle campos de menor de edad
+    function toggleTutor(isMenor) {
+      const box = document.getElementById('tutorFields');
+      box.style.display = isMenor ? 'grid' : 'none';
+      document.getElementById('tutorNombre').required = isMenor;
+    }
+
+    // Manejo de Envío
+    function handleFormSubmit(e) {
+      e.preventDefault();
+
+      const form = document.getElementById('reclamacionesForm');
+      if (!form.checkValidity()) {
+        alert('Por favor, completa todos los campos requeridos con asterisco (*).');
+        form.reportValidity();
+        return;
+      }
+
+      const nombres = document.getElementById('nombres').value.trim() + ' ' + 
+                            document.getElementById('apPaterno').value.trim() + ' ' + 
+                            document.getElementById('apMaterno').value.trim();
+      const tipoDoc = document.getElementById('tipoDoc').value;
+      const nroDoc = document.getElementById('nroDoc').value.trim();
+      const tipoRegistro = document.getElementById('tipoRegistro').value;
+      const producto = document.getElementById('productoSelect').value;
+
+      const now = new Date();
+      const fechaStr = now.toLocaleDateString('es-PE') + ' ' + now.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' });
+
+      // Llenar datos de constancia
+      document.getElementById('recNro').innerText = hojaCodigo;
+      document.getElementById('recFecha').innerText = fechaStr;
+      document.getElementById('recNombre').innerText = nombres;
+      document.getElementById('recDoc').innerText = tipoDoc + ' ' + nroDoc;
+      document.getElementById('recTipo').innerText = tipoRegistro;
+      document.getElementById('recProducto').innerText = producto;
+
+      // Abrir modal de constancia
+      document.getElementById('modalConfirmacion').classList.add('active');
+    }
+
+    function cerrarModalYVolver() {
+      document.getElementById('modalConfirmacion').classList.remove('active');
+      window.location.href = './Main.dc.html';
+    }
+
+    function limpiarFormulario() {
+      if (confirm('¿Estás seguro de que deseas reiniciar todos los campos del formulario?')) {
+        document.getElementById('reclamacionesForm').reset();
+        selectTipo('RECLAMO');
+        toggleTutor(false);
+      }
+    }
+  </script>
+
+</body>
+</html>
